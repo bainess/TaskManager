@@ -8,21 +8,29 @@ public class ToDoList {
     void addTask (Scanner scan) {
         System.out.print("Enter a new task: ");
         String taskName = "";
+        String taskDescription;
         if (scan.hasNext()){
             taskName = scan.next();
         }
         Task newTask = new Task(taskName);
         toDoList.add(newTask);
+
+        System.out.println("Would you like add a description? yes / no: ");
+        String answer = scan.next();
+        if (answer.equals("yes")) {
+            System.out.println("Enter the description: ");
+            scan.nextLine();
+            taskDescription = scan.nextLine();
+            newTask.setDescription(taskDescription);
+            System.out.println(" ");
+        }
     }
 
     void editTask(Scanner scan) {
         System.out.print("What task needs change? \n Enter the number: ");
         int taskNumber = scan.nextInt();
         System.out.print("What would you like to do instead? ");
-        String taskName = "";
-        if (scan.hasNext()){
-            taskName = scan.next();
-        }
+        String taskName = scan.next();
         Task editedTask = toDoList.get(taskNumber-1);
         editedTask.name = taskName;
 
@@ -44,6 +52,10 @@ public class ToDoList {
             Task currentTask = toDoList.get(i);
             String taskIsDone = (currentTask.isDone) ? "done" : "not done";
             System.out.println((i + 1) + ". " + currentTask.name + " - " + taskIsDone);
+            if (currentTask.getDescription() != null) {
+                System.out.println("Task detail: " + currentTask.getDescription());
+            }
+
         }
         System.out.println(" ");
     }
