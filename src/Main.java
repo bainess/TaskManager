@@ -30,6 +30,9 @@ public class Main {
                     toDo.printList();
                     break;
                 case 5:
+                    toDo.markTaskDone(scan);
+                    break;
+                case 6:
                     return;
                 default:
                     System.out.println("The instruction wasn't found. Try another one: ");
@@ -47,6 +50,7 @@ public class Main {
         System.out.println("2. Change a task");
         System.out.println("3. Remove a task");
         System.out.println("4. Print the tasks");
-        System.out.println("5. Exit");
+        System.out.println("5. Mark a task - done");
+        System.out.println("6. Exit");
     }
 }

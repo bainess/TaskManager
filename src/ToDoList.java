@@ -32,11 +32,18 @@ public class ToDoList {
       int taskNumber = scan.nextInt();
       toDoList.remove(taskNumber-1);
     }
-
+    void markTaskDone (Scanner scan) {
+        System.out.print("What task is done? Enter the number: ");
+        int taskDoneNumber = scan.nextInt();
+        Task taskDone = toDoList.get(taskDoneNumber-1);
+        taskDone.isDone = true;
+    }
     void printList(){
         System.out.println("Your task list: ");
         for (int i = 0; i < toDoList.size(); i++) {
-            System.out.println((i + 1) + ". " + toDoList.get(i).name);
+            Task currentTask = toDoList.get(i);
+            String taskIsDone = (currentTask.isDone) ? "done" : "not done";
+            System.out.println((i + 1) + ". " + currentTask.name + " - " + taskIsDone);
         }
         System.out.println(" ");
     }
