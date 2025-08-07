@@ -24,6 +24,24 @@ public class ToDoList {
             newTask.setDescription(taskDescription);
             System.out.println(" ");
         }
+
+        System.out.println("Would you like to set the priority?");
+        String answerPriority = scan.next();
+        if(answerPriority.equals("yes")) {
+            System.out.println("Choose the task priority: 1 - urgent, 2 - low urgency, 3 - not urgent");
+            int priority = scan.nextInt();
+            switch(priority){
+                case 1:
+                    newTask.setPriorityLevel(Task.Priority.HIGH);
+                    break;
+                case 2:
+                    newTask.setPriorityLevel(Task.Priority.MIDDLE);
+                    break;
+                case 3:
+                    newTask.setPriorityLevel(Task.Priority.LOW);
+                    break;
+            }
+        }
     }
 
     void editTask(Scanner scan) {
@@ -50,10 +68,14 @@ public class ToDoList {
         System.out.println("Your task list: ");
         for (int i = 0; i < toDoList.size(); i++) {
             Task currentTask = toDoList.get(i);
-            String taskIsDone = (currentTask.isDone) ? "done" : "not done";
-            System.out.println((i + 1) + ". " + currentTask.name + " - " + taskIsDone);
-            if (currentTask.getDescription() != null) {
-                System.out.println("Task detail: " + currentTask.getDescription());
+            String taskIsDone = (currentTask.isDone) ? "done" : "to do";
+            Task.Priority priority = null;
+            if (currentTask.getPriorityLevel() != null) {
+                priority = currentTask.getPriorityLevel();
+            }
+            System.out.println((i + 1) + ". " + currentTask.name + " - " + priority.getPriorityDescription() + " - " + taskIsDone);
+            if (currentTask.getTaskDescription() != null) {
+                System.out.println("Task detail: " + currentTask.getTaskDescription());
             }
 
         }
